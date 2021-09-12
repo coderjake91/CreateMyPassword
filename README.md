@@ -3,7 +3,15 @@
 CreateMyPassword
 
 **Description**
+A JavaScript password generator (web application) that prompts the user for a desired password length (8 to 128 characters), and then asks user to specify which character types they would like to include into their generated password (lowercase, uppercase, numeric, and/or special characters).
 
+A unique password is displayed to the styled 'CreateMyPassword' password site field once the user has completed the prompts.
+
+**User Story**
+
+AS AN employee with access to sensitive data
+I WANT to randomly generate a password that meets certain criteria
+SO THAT I can create a strong password that provides greater security
 
 **Acceptance Criteria**
 
@@ -46,7 +54,7 @@ In order to utilize this built in functionality please perform the following act
 
 **Application**
 
-[view link to 'CreateMyPassword' deployed website]()
+[view link to 'CreateMyPassword' deployed website](https://coderjake91.github.io/CreateMyPassword/)
 
 **CreateMyPassword github repo URL**
 
