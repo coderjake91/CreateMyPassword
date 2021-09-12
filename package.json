@@ -1,0 +1,19 @@
+{
+  "name": "createmypassword",
+  "version": "1.0.0",
+  "description": "JavaScript Password Generator Web-app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coderjake91/CreateMyPassword.git"
+  },
+  "author": "Jacob Frazer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/coderjake91/CreateMyPassword/issues"
+  },
+  "homepage": "https://github.com/coderjake91/CreateMyPassword#readme"
+}

@@ -1,19 +1,19 @@
 
-//class Password {
- //create constructor function with proto
-    // constructor(){
-    //     this.passLength;
-    // }
+class Password {
+ //create constructor function to house main Password properties
+    constructor(){
+        this.passLength = 0;
+        this.userPassChoices = [];
+        this.confirmPrompts =  [];
+        this.filteredArr = [];
+        this.password = [];
+    }
 
-let passLength = 0;
-let userPassChoices = [];
-let confirmPrompts =  [];
-let filteredArr = [];
-let password = [];
+
 
 //method that prompts user and constructs password preferences
 
-function buildPassword(){
+buildPassword(){
     window.alert("Welcome to CreateMyPassword! Let's step through a few password preferences in order to generate your new password...");
 
     passPrompt();
@@ -23,38 +23,39 @@ function buildPassword(){
 
     convertRandIntArrToPass(randomASCIIPool);
 
-    console.log(password);
+    console.log(this.password);
+    return this.password;
 }
 
-function passPrompt(){
+passPrompt(){
     
-    passLength = window.prompt('What length would you like your password to be? (choose a number between 8 and 128 characters');
+    this.passLength = window.prompt('What length would you like your password to be? (choose a number between 8 and 128 characters');
 
-    passLength = parseInt(passLength);
+    this.passLength = parseInt(this.passLength);
 
-        while(!Number.isSafeInteger(passLength) || passLength > 128 || passLength < 8){
+        while(!Number.isSafeInteger(this.passLength) || this.passLength > 128 || this.passLength < 8){
             window.alert('You have not correctly chosen a password length...');
             passPrompt();
         }
 
-    confirmPrompts[0] = window.confirm('Would you like to include lowercase characters?');
-    if(confirmPrompts[0]){userPassChoices[0] = 'confirmLower'};
-    confirmPrompts[1] = window.confirm('Would you like to include uppercase characters?');
-    if(confirmPrompts[1]){userPassChoices[1] = 'confirmUpper'};
-    confirmPrompts[2] = window.confirm('Would you like to include numeric characters?');
-    if(confirmPrompts[2]){userPassChoices[2] = 'confirmNumeric'};
-    confirmPrompts[3] = window.confirm('Would you like to include special characters?');
-    if(confirmPrompts[3]){userPassChoices[3] = 'confirmSpecial'};
+    this.confirmPrompts[0] = window.confirm('Would you like to include lowercase characters?');
+    if(this.confirmPrompts[0]){this.userPassChoices[0] = 'confirmLower'};
+    this.confirmPrompts[1] = window.confirm('Would you like to include uppercase characters?');
+    if(this.confirmPrompts[1]){this.userPassChoices[1] = 'confirmUpper'};
+    this.confirmPrompts[2] = window.confirm('Would you like to include numeric characters?');
+    if(this.confirmPrompts[2]){this.userPassChoices[2] = 'confirmNumeric'};
+    this.confirmPrompts[3] = window.confirm('Would you like to include special characters?');
+    if(this.confirmPrompts[3]){this.userPassChoices[3] = 'confirmSpecial'};
 
-    console.log(passLength);
-    confirmPrompts.forEach(prompt => console.log(prompt));
-    userPassChoices.forEach(choice => console.log(choice));
+    console.log(this.passLength);
+    this.confirmPrompts.forEach(prompt => console.log(prompt));
+    this.userPassChoices.forEach(choice => console.log(choice));
 }
 
 //method that produces an array of random integers between 0 - 128 using crypto API
 
-function getRandEightBitIntArr() {
-    let seedArray = new Int8Array(passLength * 10);
+getRandEightBitIntArr() {
+    let seedArray = new Int8Array(this.passLength * 10);
     window.crypto.getRandomValues(seedArray);
 
     let randEightBitIntArr = Array.from(seedArray);
@@ -72,12 +73,12 @@ function getRandEightBitIntArr() {
 }
 
 //method that accepts random int array and converts it to a password with user specified characters
-function convertRandIntArrToPass(randomIntArray){
+convertRandIntArrToPass(randomIntArray){
 
     console.log('here in: convertRandIntArrToPass')
     
     //interate through preferences, and generate filtered IntArray (specifying ASCII numbers) from randomly generated Int array
-    userPassChoices.forEach(choice => {
+    this.userPassChoices.forEach(choice => {
         switch(choice){
             case 'confirmLower': 
                 console.log('im here in pref 0')
@@ -88,7 +89,7 @@ function convertRandIntArrToPass(randomIntArray){
                     }
                 });
 
-                filteredArr = filteredArr.concat(filter0);
+                this.filteredArr = this.filteredArr.concat(filter0);
                 break;
 
             case'confirmUpper':
@@ -100,7 +101,7 @@ function convertRandIntArrToPass(randomIntArray){
                     }
                 });
 
-                filteredArr = filteredArr.concat(filter1);
+                this.filteredArr = this.filteredArr.concat(filter1);
                 break;
 
             case'confirmNumeric':
@@ -112,7 +113,7 @@ function convertRandIntArrToPass(randomIntArray){
                     }
                 });
 
-                filteredArr = filteredArr.concat(filter2);
+                this.filteredArr = this.filteredArr.concat(filter2);
                 break;
 
             case'confirmSpecial':
@@ -124,7 +125,7 @@ function convertRandIntArrToPass(randomIntArray){
                     }
                 });
 
-                filteredArr = filteredArr.concat(filter3);
+                this.filteredArr = this.filteredArr.concat(filter3);
                 break;
 
             default:
@@ -132,16 +133,14 @@ function convertRandIntArrToPass(randomIntArray){
         }
     });
 
+    console.log(this.filteredArr);
+
     //build password using random elements from filtered randomIntArray
-    for(i = 0; i < passLength; i++){
-        password[i] = String.fromCodePoint(filteredArr[(Math.floor(Math.random() * (filteredArr.length - 0) + 0))]);
+    for(i = 0; i < this.passLength; i++){
+        this.password[i] = String.fromCodePoint(this.filteredArr[(Math.floor(Math.random() * (this.filteredArr.length - 0) + 0))]);
     }
 }
-
-//this statement logs '!' using unicode
-console.log(String.fromCodePoint(33));
-//build the user's password
-buildPassword();
+}
 
 
 
